@@ -18,9 +18,9 @@ include('connect.php');
 $id=$_GET['id'];
 
 $sql2="SELECT * FROM vouchers WHERE id='$id' ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($conn, $sql2);
 
-$rows=mysql_fetch_assoc($result2);
+$rows=mysqli_fetch_assoc($result2);
 $manual_id=$rows['manual_id'];
 ?>
 
@@ -91,7 +91,7 @@ if(isset($_POST['del_sub'])){
     $id=$_POST['id'];
 
     $sql3="DELETE FROM vouchers WHERE id='$id' ";
-    $result3=mysql_query($sql3);
+    $result3=mysqli_query($conn, $sql3);
 
      if($result3){
         echo "<script>
@@ -100,14 +100,14 @@ if(isset($_POST['del_sub'])){
 </script>
             ";
             echo "<script>
-    alert('Oops!!! Operation Unsuccessful. Please Try again! ".mysql_error()."');
+    alert('Oops!!! Operation Unsuccessful. Please Try again! ".mysqli_error()."');
     window.open('vouchers.php','_self');
 </script>
             ";
     }
 }
 
-mysql_close();
+mysqli_close();
 ?>
                     </table>
                     <div align="center">

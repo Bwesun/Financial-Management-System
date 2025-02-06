@@ -94,16 +94,16 @@ $date=date('d l M Y');
 include('connect.php');
 
 $sql="SELECT * FROM accounts ";
-$result=mysql_query($sql);
-$count=mysql_num_rows($result);
+$result=mysqli_query($conn, $sql);
+$count=mysqli_num_rows($result);
 
 $sql4="SELECT * FROM vouchers ";
-$result4=mysql_query($sql4);
-$count4=mysql_num_rows($result4); 
+$result4=mysqli_query($conn, $sql4);
+$count4=mysqli_num_rows($result4); 
 
 $sql7="SELECT * FROM vouchers ";
-$result7=mysql_query($sql7);
-$count7=mysql_num_rows($result7);
+$result7=mysqli_query($conn, $sql7);
+$count7=mysqli_num_rows($result7);
 
 
 ?>
@@ -149,8 +149,8 @@ $count7=mysql_num_rows($result7);
                 <div class="inner">
 <?php
 $sql5="SELECT * FROM accounts ";
-$result5=mysql_query($sql5);
-$count5=mysql_num_rows($result5);
+$result5=mysqli_query($conn, $sql5);
+$count5=mysqli_num_rows($result5);
 
 ?>
                     <h3> User Management </h3>
@@ -167,27 +167,27 @@ $count5=mysql_num_rows($result5);
 
 <?php
 $sql="SELECT * FROM accounts ";
-$result=mysql_query($sql);
-$count=mysql_num_rows($result);
+$result=mysqli_query($conn, $sql);
+$count=mysqli_num_rows($result);
 
 $sql4="SELECT * FROM accounts ";
-$result4=mysql_query($sql4);
-$count4=mysql_num_rows($result4); 
+$result4=mysqli_query($conn, $sql4);
+$count4=mysqli_num_rows($result4); 
 
 
 $sql2="SELECT SUM(credit) FROM vouchers ";
-$result2=mysql_query($sql2);
-$rows=mysql_fetch_assoc($result2);
+$result2=mysqli_query($conn, $sql2);
+$rows=mysqli_fetch_assoc($result2);
 $total_income=$rows['SUM(credit)'];
 
 $sql5="SELECT SUM(debit) FROM vouchers ";
-$result5=mysql_query($sql5);
-$rows=mysql_fetch_assoc($result5);
+$result5=mysqli_query($conn, $sql5);
+$rows=mysqli_fetch_assoc($result5);
 $total_expense=$rows['SUM(debit)'];
 
 $sql6="SELECT SUM(balance) FROM accounts ";
-$result6=mysql_query($sql6);
-$rows=mysql_fetch_assoc($result6);
+$result6=mysqli_query($conn, $sql6);
+$rows=mysqli_fetch_assoc($result6);
 $balance=$rows['SUM(balance)'];
 
 ?>

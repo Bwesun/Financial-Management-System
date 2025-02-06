@@ -40,7 +40,7 @@ if(isset($_POST['sub'])){
     $hash=md5($password);
 
     $sql="INSERT INTO users(username,password, hash, type)VALUES('$username','$password', '$hash', '$type') ";
-    $result=mysql_query($sql);
+    $result=mysqli_query($conn, $sql);
 
     if($result){
         echo "<script>
@@ -115,11 +115,11 @@ include('connect.php');
 $i=1;
 
 $sql2="SELECT * FROM users ORDER BY id DESC ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($conn, $sql2);
 
-$count=mysql_num_rows($result2);
+$count=mysqli_num_rows($result2);
 
-while($rows=mysql_fetch_assoc($result2)){
+while($rows=mysqli_fetch_assoc($result2)){
 ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
@@ -140,7 +140,7 @@ if(isset($_POST['del_sub'])){
     $id=$_POST['id'];
 
     $sql3="DELETE FROM users WHERE id='$id' ";
-    $result3=mysql_query($sql3);
+    $result3=mysqli_query($conn, $sql3);
 
      if($result3){
         echo "<script>
@@ -156,7 +156,7 @@ if(isset($_POST['del_sub'])){
     }
 }
 
-mysql_close();
+mysqli_close();
 ?><tr>
     <td colspan="4"><strong>Total No. of Users: <?php echo $count; ?></strong></td>
 </tr>

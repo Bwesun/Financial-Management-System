@@ -37,11 +37,11 @@ include('connect.php');
 $i=1;
 
 $sql2="SELECT * FROM event_log ORDER BY id DESC ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($conn, $sql2);
 
-$count=mysql_num_rows($result2);
+$count=mysqli_num_rows($result2);
 
-while($rows=mysql_fetch_assoc($result2)){
+while($rows=mysqli_fetch_assoc($result2)){
 ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
@@ -52,7 +52,7 @@ while($rows=mysql_fetch_assoc($result2)){
 <?php
 }
 
-mysql_close();
+mysqli_close();
 ?><tr>
     <td colspan="4"><strong>Total No. of Login Events: <?php echo $count; ?></strong></td>
 </tr>

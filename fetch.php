@@ -1,10 +1,10 @@
 <?php
-$connect=mysqli_connect("localhost", "root", "", "finance");
+include('connect.php');
 
 
 $output='';
 $sql="SELECT * FROM vouchers WHERE manual_id LIKE '%".$_POST['search']."%' OR id LIKE '%".$_POST['search']."%' ";
-$result=mysqli_query($connect, $sql);
+$result=mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result)>0)
 {

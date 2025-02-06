@@ -30,7 +30,7 @@ if(isset($_POST['sub'])){
     $balance=$_POST['balance'];
 
     $sql="INSERT INTO accounts(name, acct_number, title, balance)VALUES('$name', '$number', '$title', '$balance') ";
-    $result=mysql_query($sql);
+    $result=mysqli_query($conn, $sql);
 
     if($result){
         echo "<script>
@@ -118,11 +118,11 @@ include('connect.php');
 $i=1;
 
 $sql2="SELECT * FROM accounts ORDER BY id DESC ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($conn, $sql2);
 
-$count=mysql_num_rows($result2);
+$count=mysqli_num_rows($result2);
 
-while($rows=mysql_fetch_assoc($result2)){
+while($rows=mysqli_fetch_assoc($result2)){
 ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
@@ -151,7 +151,7 @@ if(isset($_POST['del_sub'])){
     $id=$_POST['id'];
 
     $sql3="DELETE FROM accounts WHERE id='$id' ";
-    $result3=mysql_query($sql3);
+    $result3=mysqli_query($conn, $sql3);
 
      if($result3){
         echo "<script>
@@ -160,14 +160,14 @@ if(isset($_POST['del_sub'])){
 </script>
             ";
             echo "<script>
-    alert('Oops!!! Operation Unsuccessful. Please Try again! Ensure there is no duplicate record! ".mysql_error()."');
+    alert('Oops!!! Operation Unsuccessful. Please Try again! Ensure there is no duplicate record! ".mysqli_error()."');
     window.open('accounts.php','_self');
 </script>
             ";
     }
 }
 
-mysql_close();
+mysqli_close();
 ?><tr>
     <td colspan="4"><strong>Total No. of Accounts: <?php echo $count; ?></strong></td>
 </tr>

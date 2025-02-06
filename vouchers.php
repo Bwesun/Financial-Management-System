@@ -35,8 +35,8 @@ if(isset($_POST['sub'])){
     $action=$_POST['action'];
 
         $sql5="SELECT * FROM accounts WHERE name='$acct_paid_to' ";
-        $result5=mysql_query($sql5);
-        $row=mysql_fetch_assoc($result5);
+        $result5=mysqli_query($conn, $sql5);
+        $row=mysqli_fetch_assoc($result5);
         $balance=$row['balance'];
         $id=$row['id'];
 
@@ -46,13 +46,13 @@ if(isset($_POST['sub'])){
         $credit='';
         $closing=$balance-$amount;
         $sql6="UPDATE accounts SET balance=balance-'$amount' WHERE id='$id'  ";
-        $result6=mysql_query($sql6);
+        $result6=mysqli_query($conn, $sql6);
     }elseif($action=='credit'){
         $credit=$amount;
         $debit='';
         $closing=$balance+$amount;
         $sql6="UPDATE accounts SET balance=balance+'$amount' WHERE id='$id'  ";
-        $result6=mysql_query($sql6);
+        $result6=mysqli_query($conn, $sql6);
     }else{
         echo "<script>
     alert('Invalid Amount! Please check and try again!');
@@ -63,7 +63,7 @@ if(isset($_POST['sub'])){
 
     if($balance>$amount || $action=='credit'){
         $sql="INSERT INTO vouchers(pay_date, manual_id, voucher_type, description, amount, posted_by, acct_paid_to, status, debit, credit, closing)VALUES('$date','$manual_id','$voucher_type','$description','$amount','$posted_by','$acct_paid_to','$action', '$debit', '$credit', '$closing'); ";
-    $result=mysql_query($sql);
+    $result=mysqli_query($conn, $sql);
     echo $closing;
 
         if($result){
@@ -77,7 +77,7 @@ if(isset($_POST['sub'])){
             alert('Transaction Unsuccessful!');
             window.open('vouchers.php', '_self');
             </script>
-                    ";//echo mysql_error()."------".$sql;
+                    ";//echo mysqli_error()."------".$sql;
             }
     }
     
@@ -128,9 +128,9 @@ myModalLabel" aria-hidden="true">
                                             <?php
                                             include('connect.php');
                                                 $sql4="SELECT * FROM accounts";
-                                                $result4=mysql_query($sql4);
+                                                $result4=mysqli_query($conn, $sql4);
 
-                                                while($row=mysql_fetch_assoc($result4)){
+                                                while($row=mysqli_fetch_assoc($result4)){
                                             ?>
                                             <option value="<?php echo $row['name'];  ?>"><?php echo $row['name'];  ?></option>
                                             <?php
@@ -185,11 +185,11 @@ include('connect.php');
 $i=1;
 
 $sql2="SELECT * FROM vouchers ORDER BY id DESC ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($conn, $sql2);
 
-$count=mysql_num_rows($result2);
+$count=mysqli_num_rows($result2);
 
-while($rows=mysql_fetch_assoc($result2)){
+while($rows=mysqli_fetch_assoc($result2)){
 ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
@@ -223,7 +223,7 @@ if(isset($_POST['del_sub'])){
     $id=$_POST['id'];
 
     $sql3="DELETE FROM vouchers WHERE id='$id' ";
-    $result3=mysql_query($sql3);
+    $result3=mysqli_query($conn, $sql3);
 
      if($result3){
         echo "<script>
@@ -239,7 +239,7 @@ if(isset($_POST['del_sub'])){
     }
 }
 
-mysql_close();
+mysqli_close();
 ?><tr>
     <td colspan="10"><strong>Total No. of Vouchers: <?php echo $count; ?></strong></td>
 </tr>
