@@ -52,11 +52,11 @@ include('connect.php');
 $i=1;
 
 $sql3="SELECT * FROM vouchers ORDER BY id DESC ";
-$result3=mysql_query($sql3);
+$result3=mysqli_query($conn, $sql3);
 
-$count=mysql_num_rows($result3);
+$count=mysqli_num_rows($result3);
 
-while($rows=mysql_fetch_assoc($result3)){
+while($rows=mysqli_fetch_assoc($result3)){
 ?>
                         <tr>
                             <td><?php echo $rows['pay_date']; ?></td>
@@ -72,20 +72,20 @@ while($rows=mysql_fetch_assoc($result3)){
 }
 
 $sql2="SELECT SUM(credit) FROM vouchers ";
-$result2=mysql_query($sql2);
-$rows=mysql_fetch_assoc($result2);
+$result2=mysqli_query($conn, $sql2);
+$rows=mysqli_fetch_assoc($result2);
 $total_income=$rows['SUM(credit)'];
 
 $sql5="SELECT SUM(debit) FROM vouchers ";
-$result5=mysql_query($sql5);
-$rows=mysql_fetch_assoc($result5);
+$result5=mysqli_query($conn, $sql5);
+$rows=mysqli_fetch_assoc($result5);
 $total_expense=$rows['SUM(debit)'];
 
 $sql6="SELECT SUM(balance) FROM accounts ";
-$result6=mysql_query($sql6);
-$rows=mysql_fetch_assoc($result6);
+$result6=mysqli_query($conn, $sql6);
+$rows=mysqli_fetch_assoc($result6);
 $balance=$rows['SUM(balance)'];
-//echo $sql2."Error: ".mysql_error();
+//echo $sql2."Error: ".mysqli_error();
 ?>
 <tr>
     <td colspan="4" align="right"><strong>Total</strong></td>
@@ -124,9 +124,9 @@ $balance=$rows['SUM(balance)'];
             <div class="panel-body">
 <?php
 $sql="SELECT * FROM accounts ";
-$result=mysql_query($sql);
+$result=mysqli_query($conn, $sql);
 
-while($brows=mysql_fetch_assoc($result)){
+while($brows=mysqli_fetch_assoc($result)){
 ?>
 <h3>
     <font color="maroon">
@@ -148,11 +148,11 @@ while($brows=mysql_fetch_assoc($result)){
                         </tr>
 <?php
 $sql3="SELECT * FROM vouchers WHERE acct_paid_to='$acct_name' ORDER BY id DESC ";
-$result3=mysql_query($sql3);
+$result3=mysqli_query($conn, $sql3);
 
-$count=mysql_num_rows($result3);
+$count=mysqli_num_rows($result3);
 
-while($rows=mysql_fetch_assoc($result3)){
+while($rows=mysqli_fetch_assoc($result3)){
 ?>
                         <tr>
                             <td><?php echo $rows['pay_date']; ?></td>
@@ -167,20 +167,20 @@ while($rows=mysql_fetch_assoc($result3)){
 }
 
 $sql2="SELECT SUM(credit) FROM vouchers WHERE acct_paid_to='$acct_name' ";
-$result2=mysql_query($sql2);
-$rows=mysql_fetch_assoc($result2);
+$result2=mysqli_query($conn, $sql2);
+$rows=mysqli_fetch_assoc($result2);
 $total_income=$rows['SUM(credit)'];
 
 $sql5="SELECT SUM(debit) FROM vouchers WHERE acct_paid_to='$acct_name' ";
-$result5=mysql_query($sql5);
-$rows=mysql_fetch_assoc($result5);
+$result5=mysqli_query($conn, $sql5);
+$rows=mysqli_fetch_assoc($result5);
 $total_expense=$rows['SUM(debit)'];
 
 $sql6="SELECT * FROM accounts WHERE name='$acct_name' ";
-$result6=mysql_query($sql6);
-$rows=mysql_fetch_assoc($result6);
+$result6=mysqli_query($conn, $sql6);
+$rows=mysqli_fetch_assoc($result6);
 $balance=$rows['balance'];
-//echo $sql2."Error: ".mysql_error();
+//echo $sql2."Error: ".mysqli_error();
 ?>
 <tr>
     <td colspan="3" align="right"><strong>Total</strong></td>
@@ -234,11 +234,11 @@ $balance=$rows['balance'];
 <?php
 $i=1;
 $sql3="SELECT * FROM accounts ORDER BY id DESC ";
-$result3=mysql_query($sql3);
+$result3=mysqli_query($conn, $sql3);
 
-$count=mysql_num_rows($result3);
+$count=mysqli_num_rows($result3);
 
-while($rows=mysql_fetch_assoc($result3)){
+while($rows=mysqli_fetch_assoc($result3)){
 ?>
                         <tr>
                             <td><?php echo $i++ ?></td>
@@ -251,10 +251,10 @@ while($rows=mysql_fetch_assoc($result3)){
 }
 
 $sql6="SELECT SUM(balance) FROM accounts ";
-$result6=mysql_query($sql6);
-$rows=mysql_fetch_assoc($result6);
+$result6=mysqli_query($conn, $sql6);
+$rows=mysqli_fetch_assoc($result6);
 $balance=$rows['SUM(balance)'];
-//echo $sql2."Error: ".mysql_error();
+//echo $sql2."Error: ".mysqli_error();
 ?>
 
 <tr>
