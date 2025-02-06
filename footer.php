@@ -5,7 +5,7 @@
     <br>
 <footer class="footer navbar-fixed-bottom">
 <hr>
-<p> &copy; Copyright NILEST, 2021. Powered by <a href="http://facebook.com">Barmani Daniel</a></p>
+<p> &copy; Copyright NILEST, 2021. Designed by <a href="http://facebook.com">IJM</a></p>
         </footer>
 </div>
 <script src="bootstrap.min.js"></script>
