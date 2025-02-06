@@ -2,7 +2,7 @@
 session_start();
 include('head.php');
 
-$date=date(Y);
+$date=date("Y");
 ?>
 <div class="container-fluid">
     <div class="row" style=" padding: 10px; background-color: white; border-radius: 5px;">
